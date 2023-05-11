@@ -1,7 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect,url_for, render_template
 import util
 
 app = Flask(__name__)
+
+
 
 @app.route('/get_location_names', methods=['GET'])
 def get_location_names():
@@ -25,6 +27,11 @@ def predict_home_price():
     response.headers.add('Access-Control-Allow-Origin', '*')
 
     return response
+
+@app.route("/")
+def home():
+    return render_template("app.html")
+
 
 if __name__ == "__main__":
     print("Starting Python Flask Server For Home Price Prediction...")
